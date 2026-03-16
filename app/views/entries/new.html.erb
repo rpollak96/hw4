@@ -4,8 +4,13 @@
       <div class="card-body p-4">
         <h1 class="card-title text-center mb-4 text-primary">New Entry</h1>
 
-        <form action="/entries" method="post">
+        <form action="/entries" method="post" enctype="multipart/form-data">
           <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
+
+        <div class="mb-3">
+  <label for="uploaded_image_input" class="form-label">Upload Image</label>
+  <input type="file" name="uploaded_image" id="uploaded_image_input" class="form-control" accept="image/png, image/jpg, image/jpeg, image/gif">
+</div>
 
           <div class="mb-3">
             <label for="title_input" class="form-label text-secondary">Title</label>
