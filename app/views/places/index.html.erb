@@ -1,13 +1,42 @@
-<h1>Places</h1>
-
-<ul>
-  <% for place in @places %>
-    <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
+<div class="row align-items-center mb-4">
+  <div class="col">
+    <h1 class="display-4">Places</h1>
+  </div>
+  <% if @current_user %>
+    <div class="col-auto">
+      <a href="/places/new" class="btn btn-primary btn-lg">
+        <i class="bi bi-plus-circle"></i> New Place
+      </a>
+    </div>
   <% end %>
-</ul>
+</div>
 
-<% if @current_user %>
-<p>
-  <a href="/places/new">New place</a>
-</p>
-<% end %>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% if @places.any? %>
+    <% for place in @places %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-primary"><%= place["name"] %></h5>
+            <p class="card-text">
+              <span class="badge bg-secondary">
+                <%= Entry.where(place_id: place["id"], user_id: @current_user["id"]).count %> Entries
+              </span>
+            </p>
+            <a href="/places/<%= place["id"] %>" class="btn btn-outline-primary">View Journal</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="col-12">
+      <div class="alert alert-warning text-center">
+        <% if @current_user %>
+          <p class="mb-0">You haven't added any places yet. Click "New Place" to get started!</p>
+        <% else %>
+          <p class="mb-0">Please login to see your travel journal.</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

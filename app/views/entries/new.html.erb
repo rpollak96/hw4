@@ -1,22 +1,36 @@
-<h1>New Entry</h1>
+<div class="row justify-content-center">
+  <div class="col-md-7 col-lg-6">
+    <div class="card shadow-sm mt-5">
+      <div class="card-body p-4">
+        <h1 class="card-title text-center mb-4 text-primary">New Entry</h1>
 
-<form action="/entries" method="post">
-  <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
+        <form action="/entries" method="post">
+          <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
 
-  <p>
-    <label for="title_input">Title</label>
-    <input type="text" name="title" id="title_input">
-  </p>
+          <div class="mb-3">
+            <label for="title_input" class="form-label text-secondary">Title</label>
+            <input type="text" name="title" id="title_input" class="form-control" placeholder="A brief title for your memory">
+          </div>
 
-  <p>
-    <label for="description_input">Description</label>
-    <input type="text" name="description" id="description_input">
-  </p>
+          <div class="mb-3">
+            <label for="description_input" class="form-label text-secondary">Description</label>
+            <textarea name="description" id="description_input" rows="4" class="form-control" placeholder="What happened on your trip?"></textarea>
+          </div>
 
-  <p>
-    <label for="occurred_on_input">Occurred On</label>
-    <input type="date" name="occurred_on" id="occurred_on_input">
-  </p>
+          <div class="mb-3">
+            <label for="occurred_on_input" class="form-label text-secondary">Occurred On</label>
+            <input type="date" name="occurred_on" id="occurred_on_input" class="form-control">
+          </div>
 
-  <button>Save</button>
-</form>
+          <div class="d-grid mt-4">
+            <button class="btn btn-primary btn-lg">Save Memory</button>
+          </div>
+        </form>
+        
+        <div class="mt-3 text-center">
+          <a href="/places/<%= params["place_id"] %>" class="btn btn-link">Back to Journal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
